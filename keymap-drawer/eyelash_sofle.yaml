@@ -14,7 +14,7 @@ layers:
   - {t: '9', s: (}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - $$mdi:keyboard-tab$$
+  - {t: '[', s: '{'}
   - Q
   - W
   - E
@@ -26,8 +26,8 @@ layers:
   - I
   - O
   - P
-  - {t: \, s: '|'}
-  - $$mdi:apple-keyboard-option$$
+  - {t: ']', s: '}'}
+  - {t: ;, s: ':'}
   - {t: A, h: LGUI}
   - {t: S, h: '$$mdi:apple-keyboard-option$$'}
   - {t: D, h: '$$mdi:apple-keyboard-control$$'}
@@ -39,8 +39,8 @@ layers:
   - {t: K, h: '$$mdi:apple-keyboard-control$$'}
   - {t: L, h: '$$mdi:apple-keyboard-option$$'}
   - {t: '''', h: LGUI, s: '"'}
-  - {t: '''', s: '"'}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '=', s: +}
+  - {t: '`', s: '~'}
   - {t: Z, h: Button}
   - {t: X, h: '$$mdi:apple-keyboard-option$$'}
   - C
@@ -52,19 +52,19 @@ layers:
   - {t: ',', s: <}
   - {t: ., h: '$$mdi:apple-keyboard-option$$', s: '>'}
   - {t: /, h: Button, s: '?'}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: \, s: '|'}
   - $$mdi:volume-off$$
   - $$mdi:apple-keyboard-control$$
-  - LGUI
+  - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:keyboard-esc$$', h: Media}
   - {t: '$$mdi:keyboard-space$$', h: Nav}
   - {t: '$$mdi:keyboard-tab$$', h: Mouse}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - Button
   - {t: '$$mdi:keyboard-return$$', h: Sym}
   - {t: '$$mdi:backspace$$', h: Num}
   - {t: '$$mdi:backspace-reverse-outline$$', h: Fun}
   - $$mdi:apple-keyboard-shift$$
-  - $$mdi:backspace-reverse-outline$$
+  - $$mdi:apple-keyboard-option$$
   Extra:
   - $$mdi:keyboard-esc$$
   - {t: '1', s: '!'}
@@ -79,7 +79,7 @@ layers:
   - {t: '9', s: (}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - $$mdi:keyboard-tab$$
+  - {t: '[', s: '{'}
   - Q
   - W
   - E
@@ -91,8 +91,8 @@ layers:
   - I
   - O
   - P
-  - {t: \, s: '|'}
-  - $$mdi:apple-keyboard-option$$
+  - {t: ']', s: '}'}
+  - {t: ;, s: ':'}
   - {t: A, h: LGUI}
   - {t: S, h: '$$mdi:apple-keyboard-option$$'}
   - {t: D, h: '$$mdi:apple-keyboard-control$$'}
@@ -104,8 +104,8 @@ layers:
   - {t: K, h: '$$mdi:apple-keyboard-control$$'}
   - {t: L, h: '$$mdi:apple-keyboard-option$$'}
   - {t: '''', h: LGUI, s: '"'}
-  - {t: '''', s: '"'}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '=', s: +}
+  - {t: '`', s: '~'}
   - {t: Z, h: Button}
   - {t: X, h: '$$mdi:apple-keyboard-option$$'}
   - C
@@ -117,19 +117,19 @@ layers:
   - {t: ',', s: <}
   - {t: ., h: '$$mdi:apple-keyboard-option$$', s: '>'}
   - {t: /, h: Button, s: '?'}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: \, s: '|'}
   - $$mdi:volume-off$$
   - $$mdi:apple-keyboard-control$$
-  - LGUI
+  - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:keyboard-esc$$', h: Media}
   - {t: '$$mdi:keyboard-space$$', h: Nav}
   - {t: '$$mdi:keyboard-tab$$', h: Mouse}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - Button
   - {t: '$$mdi:keyboard-return$$', h: Sym}
   - {t: '$$mdi:backspace$$', h: Num}
   - {t: '$$mdi:backspace-reverse-outline$$', h: Fun}
   - $$mdi:apple-keyboard-shift$$
-  - $$mdi:backspace-reverse-outline$$
+  - $$mdi:apple-keyboard-option$$
   Tap:
   - $$mdi:keyboard-esc$$
   - {t: '1', s: '!'}
@@ -144,7 +144,7 @@ layers:
   - {t: '9', s: (}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - $$mdi:keyboard-tab$$
+  - {t: '[', s: '{'}
   - Q
   - W
   - F
@@ -156,8 +156,8 @@ layers:
   - U
   - Y
   - {t: '''', s: '"'}
-  - {t: \, s: '|'}
-  - $$mdi:apple-keyboard-option$$
+  - {t: ']', s: '}'}
+  - {t: ;, s: ':'}
   - A
   - R
   - S
@@ -169,8 +169,8 @@ layers:
   - E
   - I
   - O
-  - {t: '''', s: '"'}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '=', s: +}
+  - {t: '`', s: '~'}
   - Z
   - X
   - C
@@ -182,19 +182,19 @@ layers:
   - {t: ',', s: <}
   - {t: ., s: '>'}
   - {t: /, s: '?'}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: \, s: '|'}
   - $$mdi:volume-off$$
   - $$mdi:apple-keyboard-control$$
-  - LGUI
+  - $$mdi:apple-keyboard-option$$
   - $$mdi:keyboard-esc$$
   - $$mdi:keyboard-space$$
   - $$mdi:keyboard-tab$$
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - Button
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:backspace$$', type: backspace}
   - $$mdi:backspace-reverse-outline$$
   - $$mdi:apple-keyboard-shift$$
-  - $$mdi:backspace-reverse-outline$$
+  - $$mdi:apple-keyboard-option$$
   Button:
   - $$mdi:keyboard-esc$$
   - {t: '1', s: '!'}
@@ -209,7 +209,7 @@ layers:
   - {t: '9', s: (}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - $$mdi:keyboard-tab$$
+  - {t: '[', s: '{'}
   - UNDO
   - Sft+$$mdi:backspace-reverse-outline$$
   - Ctl+INS
@@ -221,8 +221,8 @@ layers:
   - Ctl+INS
   - Sft+$$mdi:backspace-reverse-outline$$
   - UNDO
-  - {t: \, s: '|'}
-  - $$mdi:apple-keyboard-option$$
+  - {t: ']', s: '}'}
+  - {t: ;, s: ':'}
   - LGUI
   - $$mdi:apple-keyboard-option$$
   - $$mdi:apple-keyboard-control$$
@@ -234,8 +234,8 @@ layers:
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
   - LGUI
-  - {t: '''', s: '"'}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '=', s: +}
+  - {t: '`', s: '~'}
   - {t: UNDO, type: held}
   - Sft+$$mdi:backspace-reverse-outline$$
   - Ctl+INS
@@ -247,19 +247,19 @@ layers:
   - Ctl+INS
   - Sft+$$mdi:backspace-reverse-outline$$
   - {t: UNDO, type: held alternate}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: \, s: '|'}
   - $$mdi:volume-off$$
   - $$mdi:apple-keyboard-control$$
-  - LGUI
+  - $$mdi:apple-keyboard-option$$
   - $$mdi:mouse-scroll-wheel$$
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:mouse-right-click-outline$$
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: Button, type: held alternate}
   - $$mdi:mouse-right-click-outline$$
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:mouse-scroll-wheel$$
   - $$mdi:apple-keyboard-shift$$
-  - $$mdi:backspace-reverse-outline$$
+  - $$mdi:apple-keyboard-option$$
   Nav:
   - $$mdi:keyboard-esc$$
   - {t: '1', s: '!'}
@@ -274,7 +274,7 @@ layers:
   - {t: '9', s: (}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - $$mdi:keyboard-tab$$
+  - {t: '[', s: '{'}
   - {t: '$$mdi:power-standby$$', type: bootloader}
   - {t: Tap, type: toggle}
   - {t: Extra, type: toggle}
@@ -286,8 +286,8 @@ layers:
   - Ctl+INS
   - Sft+$$mdi:backspace-reverse-outline$$
   - UNDO
-  - {t: \, s: '|'}
-  - $$mdi:apple-keyboard-option$$
+  - {t: ']', s: '}'}
+  - {t: ;, s: ':'}
   - LGUI
   - $$mdi:apple-keyboard-option$$
   - $$mdi:apple-keyboard-control$$
@@ -299,8 +299,8 @@ layers:
   - $$mdi:arrow-down-bold$$
   - $$mdi:arrow-up-bold$$
   - $$mdi:arrow-right-bold$$
-  - {t: '''', s: '"'}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '=', s: +}
+  - {t: '`', s: '~'}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-option$$
   - {t: Num, type: toggle}
@@ -312,19 +312,19 @@ layers:
   - PG DN
   - PG UP
   - END
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: \, s: '|'}
   - $$mdi:volume-off$$
   - $$mdi:apple-keyboard-control$$
-  - LGUI
+  - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - Button
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:backspace$$', type: backspace}
   - $$mdi:backspace-reverse-outline$$
   - $$mdi:apple-keyboard-shift$$
-  - $$mdi:backspace-reverse-outline$$
+  - $$mdi:apple-keyboard-option$$
   Mouse:
   - $$mdi:keyboard-esc$$
   - {t: '1', s: '!'}
@@ -339,7 +339,7 @@ layers:
   - {t: '9', s: (}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - $$mdi:keyboard-tab$$
+  - {t: '[', s: '{'}
   - {t: '$$mdi:power-standby$$', type: bootloader}
   - {t: Tap, type: toggle}
   - {t: Extra, type: toggle}
@@ -351,8 +351,8 @@ layers:
   - Ctl+INS
   - Sft+$$mdi:backspace-reverse-outline$$
   - UNDO
-  - {t: \, s: '|'}
-  - $$mdi:apple-keyboard-option$$
+  - {t: ']', s: '}'}
+  - {t: ;, s: ':'}
   - LGUI
   - $$mdi:apple-keyboard-option$$
   - $$mdi:apple-keyboard-control$$
@@ -364,8 +364,8 @@ layers:
   - {t: '$$mdi:menu-down$$', s: '$$mdi:mouse$$'}
   - {t: '$$mdi:menu-up$$', s: '$$mdi:mouse$$'}
   - {t: '$$mdi:menu-right$$', s: '$$mdi:mouse$$'}
-  - {t: '''', s: '"'}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '=', s: +}
+  - {t: '`', s: '~'}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-option$$
   - {t: Sym, type: toggle}
@@ -377,19 +377,19 @@ layers:
   - $$mdi:pan-down$$
   - $$mdi:pan-up$$
   - $$mdi:pan-right$$
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: \, s: '|'}
   - $$mdi:volume-off$$
   - $$mdi:apple-keyboard-control$$
-  - LGUI
+  - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - Button
   - $$mdi:mouse-right-click-outline$$
   - $$mdi:mouse-left-click-outline$$
   - $$mdi:mouse-scroll-wheel$$
   - $$mdi:apple-keyboard-shift$$
-  - $$mdi:backspace-reverse-outline$$
+  - $$mdi:apple-keyboard-option$$
   Media:
   - $$mdi:keyboard-esc$$
   - {t: '1', s: '!'}
@@ -404,7 +404,7 @@ layers:
   - {t: '9', s: (}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - $$mdi:keyboard-tab$$
+  - {t: '[', s: '{'}
   - {t: '$$mdi:power-standby$$', type: bootloader}
   - {t: Tap, type: toggle}
   - {t: Extra, type: toggle}
@@ -416,8 +416,8 @@ layers:
   - {t: HUE+, s: HUE-}
   - {t: SAT+, s: SAT-}
   - {t: BRI+, s: BRI-}
-  - {t: \, s: '|'}
-  - $$mdi:apple-keyboard-option$$
+  - {t: ']', s: '}'}
+  - {t: ;, s: ':'}
   - LGUI
   - $$mdi:apple-keyboard-option$$
   - $$mdi:apple-keyboard-control$$
@@ -429,8 +429,8 @@ layers:
   - $$mdi:volume-low$$
   - $$mdi:volume-high$$
   - $$mdi:skip-next$$
-  - {t: '''', s: '"'}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '=', s: +}
+  - {t: '`', s: '~'}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-option$$
   - {t: Fun, type: toggle}
@@ -442,19 +442,19 @@ layers:
   - {t: '2', s: '$$mdi:bluetooth-off$$'}
   - {t: '3', s: '$$mdi:bluetooth-off$$'}
   - {t: '4', s: '$$mdi:bluetooth-off$$'}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: \, s: '|'}
   - $$mdi:volume-off$$
   - $$mdi:apple-keyboard-control$$
-  - LGUI
+  - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - Button
   - STOP
   - $$mdi:play-pause$$
   - $$mdi:volume-off$$
   - $$mdi:apple-keyboard-shift$$
-  - $$mdi:backspace-reverse-outline$$
+  - $$mdi:apple-keyboard-option$$
   Num:
   - $$mdi:keyboard-esc$$
   - {t: '1', s: '!'}
@@ -469,7 +469,7 @@ layers:
   - {t: '9', s: (}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - $$mdi:keyboard-tab$$
+  - {t: '[', s: '{'}
   - {t: '[', s: '{'}
   - {t: '7', s: '&'}
   - {t: '8', s: '*'}
@@ -481,8 +481,8 @@ layers:
   - {t: Extra, type: toggle}
   - {t: Tap, type: toggle}
   - {t: '$$mdi:power-standby$$', type: bootloader}
-  - {t: \, s: '|'}
-  - $$mdi:apple-keyboard-option$$
+  - {t: ']', s: '}'}
+  - {t: ;, s: ':'}
   - {t: ;, s: ':'}
   - {t: '4', s: $}
   - {t: '5', s: '%'}
@@ -494,8 +494,8 @@ layers:
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
   - LGUI
-  - {t: '''', s: '"'}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '=', s: +}
+  - {t: '`', s: '~'}
   - {t: '`', s: '~'}
   - {t: '1', s: '!'}
   - {t: '2', s: '@'}
@@ -507,19 +507,19 @@ layers:
   - {t: Nav, type: toggle}
   - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: \, s: '|'}
   - $$mdi:volume-off$$
   - $$mdi:apple-keyboard-control$$
-  - LGUI
+  - $$mdi:apple-keyboard-option$$
   - {t: ., s: '>'}
   - {t: '0', s: )}
   - {t: '-', s: _}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - Button
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-shift$$
-  - $$mdi:backspace-reverse-outline$$
+  - $$mdi:apple-keyboard-option$$
   Sym:
   - $$mdi:keyboard-esc$$
   - {t: '1', s: '!'}
@@ -534,7 +534,7 @@ layers:
   - {t: '9', s: (}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - $$mdi:keyboard-tab$$
+  - {t: '[', s: '{'}
   - '{'
   - '&'
   - '*'
@@ -546,8 +546,8 @@ layers:
   - {t: Extra, type: toggle}
   - {t: Tap, type: toggle}
   - {t: '$$mdi:power-standby$$', type: bootloader}
-  - {t: \, s: '|'}
-  - $$mdi:apple-keyboard-option$$
+  - {t: ']', s: '}'}
+  - {t: ;, s: ':'}
   - ':'
   - $
   - '%'
@@ -559,8 +559,8 @@ layers:
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
   - LGUI
-  - {t: '''', s: '"'}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '=', s: +}
+  - {t: '`', s: '~'}
   - '~'
   - '!'
   - '@'
@@ -572,19 +572,19 @@ layers:
   - {t: Mouse, type: toggle}
   - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: \, s: '|'}
   - $$mdi:volume-off$$
   - $$mdi:apple-keyboard-control$$
-  - LGUI
+  - $$mdi:apple-keyboard-option$$
   - (
   - )
   - _
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - Button
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-shift$$
-  - $$mdi:backspace-reverse-outline$$
+  - $$mdi:apple-keyboard-option$$
   Fun:
   - $$mdi:keyboard-esc$$
   - {t: '1', s: '!'}
@@ -599,7 +599,7 @@ layers:
   - {t: '9', s: (}
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - $$mdi:keyboard-tab$$
+  - {t: '[', s: '{'}
   - F12
   - F7
   - F8
@@ -611,8 +611,8 @@ layers:
   - {t: Extra, type: toggle}
   - {t: Tap, type: toggle}
   - {t: '$$mdi:power-standby$$', type: bootloader}
-  - {t: \, s: '|'}
-  - $$mdi:apple-keyboard-option$$
+  - {t: ']', s: '}'}
+  - {t: ;, s: ':'}
   - F11
   - F4
   - F5
@@ -624,8 +624,8 @@ layers:
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
   - LGUI
-  - {t: '''', s: '"'}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '=', s: +}
+  - {t: '`', s: '~'}
   - F10
   - F1
   - F2
@@ -637,19 +637,19 @@ layers:
   - {t: Media, type: toggle}
   - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - {t: \, s: '|'}
   - $$mdi:volume-off$$
   - $$mdi:apple-keyboard-control$$
-  - LGUI
+  - $$mdi:apple-keyboard-option$$
   - APP
   - $$mdi:keyboard-space$$
   - $$mdi:keyboard-tab$$
-  - {t: '$$mdi:keyboard-return$$', type: enter}
+  - Button
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - $$mdi:apple-keyboard-shift$$
-  - $$mdi:backspace-reverse-outline$$
+  - $$mdi:apple-keyboard-option$$
 combos:
 - p: [14, 28, 40]
   k: {t: '$$mdi:power-standby$$', type: bootloader}
