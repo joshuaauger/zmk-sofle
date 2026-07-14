@@ -71,9 +71,13 @@
 #define ES_ARROW_D  &kp DOWN
 #define ES_ARROW_L  &kp LEFT
 #define ES_ARROW_R  &kp RIGHT
-// Diamond CENTER key — Enter here matches the vendor keymap, and gives
-// you a thumb-free Enter when the right thumb is holding a layer.
-#define ES_ARROW_C  &kp RET
+// Diamond CENTER key. Vendor had ENTER here, but we already have ENTER on
+// the right outer pinky (row 3) AND on the Miryoku thumb K35 (tap = ENTER).
+// Three enters on the right side is excessive, so this becomes a momentary
+// BUTTON-layer switch instead — which gives mouse buttons on both thumbs
+// and clipboard (undo/cut/copy/paste/redo) on the alphas while held.
+// BUTTON was otherwise only reachable by holding Z or `/`.
+#define ES_ARROW_C  &mo U_BUTTON
 
 // Number row (Row 0). ESC/BSPC on outer pinkies match the vendor layout.
 #define ES_R0_L0    &kp ESC
@@ -90,24 +94,53 @@
 #define ES_R0_R6    &kp BSPC
 
 // Outer pinky columns for rows 1..3.
-// Row 2 outer left is where the vendor put CAPS. We don't want caps in any
-// form (regular or word) — use it to restore LALT, which the vendor had on
-// row 4 col 3 (leftmost thumb). Miryoku claims that thumb slot, so LALT
-// needs a new home; the outer pinky is the closest reachable spot.
-// Row 2 outer right restores the vendor's APOS (shifted = double-quote) so
-// you don't have to hold LGUI on the P/SQT home-row mod to type quotes.
-#define ES_R1_L0    &kp TAB
-#define ES_R1_R6    &kp BSLH
-#define ES_R2_L0    &kp LALT       // was &caps_word; user never uses caps
-#define ES_R2_R6    &kp APOS       // matches vendor keymap; shifted = "
-#define ES_R3_L0    &kp LSHFT
-#define ES_R3_R6    &kp ENTER      // second Enter, mirrors vendor keymap
+//
+// Following Juraj Fiala's Miryoku-on-Sofle pattern
+// (https://jurf.github.io/2023/07/11/60-percent-miryoku/):
+//
+//   "The left and right [outer pinky] columns contain all the leftover
+//    keys. The keys that already existed on the three main rows ([, ;, ])
+//    have their positions unchanged."
+//
+// I.e. the outer pinky rows 1..3 hold the bracket/symbol/backtick keys
+// exactly where they sit on Miryoku's NUM layer, so hitting the outer
+// pinky is consistent whether or not you're holding NUM.
+//
+// This eliminates the previous ad-hoc bindings (TAB / LALT / LSHFT on
+// the left, BSLH / APOS / ENTER on the right) which were all duplicates
+// of keys already on the thumb cluster or home-row mods, and it matches
+// a published, well-thought-out Sofle Miryoku port instead of my earlier
+// invented placement.
+//
+// Miryoku NUM layer left column (K00 / K10 / K20):
+#define ES_R1_L0    &kp LBKT       // [   — Miryoku NUM K00
+#define ES_R2_L0    &kp SEMI       // ;   — Miryoku NUM K10
+#define ES_R3_L0    &kp GRAVE      // `   — Miryoku NUM K20
+// Miryoku NUM layer right column (K04 / K14 / K24):
+#define ES_R1_R6    &kp RBKT       // ]   — Miryoku NUM K04
+#define ES_R2_R6    &kp EQUAL      // =   — Miryoku NUM K14
+#define ES_R3_R6    &kp BSLH       // \   — Miryoku NUM K24
 
-// Row-4 hard-coded extras (were N30 / N31 / N38 / N39 in Miryoku).
+// Row-4 hard-coded extras. Juraj's Sofle only has 1 extra per side (which
+// he uses for `&to U_BASE` — return from tap/gaming layer). We have TWO
+// extras per side, so:
+//
+//   Left  col 1: LCTRL   (vendor-consistent; useful for Ctrl+X etc.
+//                         without home-row-mod shenanigans)
+//   Left  col 2: LALT    (user wanted LALT accessible; Miryoku K33 thumb
+//                         hold-tap ate the vendor's LALT slot at row 4
+//                         col 3, so we put it here. LGUI is still on the
+//                         A home-row-mod.)
+//   Right col 11: RSHFT  (vendor-consistent; helps when home-row-mod
+//                         shift on F is awkward for capital-F etc.)
+//   Right col 12: RALT   (was DEL in vendor, but DEL is on Miryoku K37
+//                         thumb tap. RALT is otherwise only on the X/DOT
+//                         home-row-mods, so making it a dedicated key
+//                         mirrors LALT on the left.)
 #define ES_R4_L1    &kp LCTRL      // orig LCTRL slot
-#define ES_R4_L2    &kp LGUI       // orig LGUI  slot
+#define ES_R4_L2    &kp LALT       // was LGUI; LGUI is on A home-row-mod
 #define ES_R4_R4    &kp RSHFT      // orig RSHFT slot
-#define ES_R4_R5    &kp DEL        // orig DELETE slot
+#define ES_R4_R5    &kp RALT       // was DEL; DEL is on K37 thumb tap
 
 // ---- Miryoku layout mapping macro ----------------------------------------
 //

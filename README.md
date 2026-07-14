@@ -148,30 +148,42 @@ Row 0 (number row, y ≈ 0.25):
   Esc  1   2   3   4   5      UP         6   7   8   9   0   Bsp
 
 Row 1 (top alpha, y ≈ 1.25):
-  Tab  Q   W   E   R   T      DOWN       Y   U   I   O   P   \
+  [    Q   W   E   R   T      DOWN       Y   U   I   O   P   ]
 
 Row 2 (home row, y ≈ 2.25):
-  ⌥    A/⌘ S/⌥ D/⌃ F/⇧ G      LEFT       H   J/⇧ K/⌃ L/⌥ '/⌘ '
+  ;    A/⌘ S/⌥ D/⌃ F/⇧ G      LEFT       H   J/⇧ K/⌃ L/⌥ '/⌘ =
 
 Row 3 (bottom alpha, y ≈ 3.25):
-  ⇧    Z*  X/⌥ᴿ C   V   B      RIGHT      N   M   ,   ./⌥ᴿ /*  Enter
+  `    Z*  X/⌥ᴿ C   V   B      RIGHT      N   M   ,   ./⌥ᴿ /*  \
 
 Row 4 (thumbs + encoder + arrow-center):
-  Mute ⌃  ⌘  Esc Spc Tab      Enter      Ent Bsp Del ⇧   Del
-           |  MED NAV MOU     [ctr]      SYM NUM FUN
+  Mute ⌃  ⌥  Esc Spc Tab      [BTN]      Ent Bsp Del ⇧   ⌥ᴿ
+           |  MED NAV MOU     mo         SYM NUM FUN
 ```
 
-- Row 2 outer-left pinky is **`LALT`** (the vendor had CAPS there; we
-  dropped caps entirely and used the slot to restore LALT, which
-  Miryoku's canonical thumb layout had displaced).
-- Row 2 outer-right pinky is `'` (apostrophe, shifted = `"`) matching
-  the vendor keymap.
+- **Outer pinky columns (rows 1-3)** hold the "leftover" bracket /
+  symbol / backtick keys in the **same physical positions Miryoku uses
+  on its NUM layer** — `[` `;` `` ` `` on the left, `]` `=` `\` on the
+  right. This is Juraj Fiala's pattern
+  ([reference](https://jurf.github.io/2023/07/11/60-percent-miryoku/))
+  and means these keys are at the same physical spot whether or not
+  you're holding NUM.
+- Row 4 col 2 (left extra, next to LCTRL) is **`LALT`** — the vendor
+  had LALT on row 4 col 3 (leftmost thumb), which Miryoku claims for
+  the K32 thumb hold-tap. LGUI is still on the `A` home-row-mod.
 - Home-row mods (LGUI / LALT / LCTRL / LSHFT on the left; mirrored on
   the right) fire on hold, letter fires on tap.
 - `Z*` and `/*` are layer-taps to the **BUTTON** layer.
 - `X/⌥ᴿ` and `./⌥ᴿ` are tap = letter, hold = **RAlt**.
 - The 6 thumb keys are layer-taps into the six Miryoku sub-layers.
 - The left encoder rotates for volume up/down on every layer.
+- The arrow diamond CENTER is `&mo BUTTON` — hold to momentarily switch
+  to the BUTTON layer (mouse buttons on both thumbs + clipboard
+  undo/cut/copy/paste/redo on the alphas). Vendor had Enter there but we
+  already have Enter on the right pinky and on the K35 thumb.
+- Row 4 col 12 (right extra) is `RALT` (right alt / AltGr) — symmetric
+  with LALT on the left. Vendor had Delete there but K37 thumb tap
+  still gives Delete.
 - The arrow diamond and number row are hard-coded and layer-transparent,
   so they work in the middle of any Miryoku layer.
 
@@ -229,17 +241,29 @@ vendor's _layer-access ergonomics_. Ask if you want that variant.
   button is far away from any Miryoku layer switch, so hard-coding it to
   `C_MUTE` is nearly free ergonomically and keeps mute-on-every-layer
   as an always-available shortcut.
-- **All 64 physical keys do something on every layer.** The Miryoku
-  canonical layout is only 36 keys, so an out-of-the-box port would
-  leave 28 physical keys inert. Instead, this mapping hard-codes the
-  number row (`1`–`0`), the arrow diamond (⬆⬇⬅➡ + Enter in the middle),
-  the outer pinky columns (`Tab` / `Caps Word` / `Shift` on the left,
-  `\` / `;` / `Enter` on the right), and the four extra inner-bottom
-  keys (`Ctrl` / `Gui` on the left, `Shift` / `Delete` on the right) so
-  they behave like a standard Sofle regardless of which Miryoku layer
-  is active. The trade-off is that these keys are **not**
-  layer-aware — the number row always types digits, even on the FUN
-  layer.
+- **All 64 physical keys do something on every layer, following an
+  established pattern.** The Miryoku canonical layout is only 36 keys,
+  so an out-of-the-box port would leave 28 physical keys inert.
+  Rather than invent placements from scratch, this mapping adopts
+  [Juraj Fiala's Miryoku-on-Sofle pattern](https://jurf.github.io/2023/07/11/60-percent-miryoku/)
+  and extends it to cover the Eyelash Sofle's extras:
+  - **Number row (`1`–`0`)** — hard-coded, layer-transparent (Juraj
+    keeps this too).
+  - **Outer pinky columns rows 1-3** — hold the "leftover" bracket /
+    semicolon / backtick / equals / backslash keys in their **Miryoku
+    NUM-layer positions** (`[`, `;`, `` ` `` on the left; `]`, `=`,
+    `\` on the right). Same position whether or not you're holding NUM.
+  - **Arrow diamond** (Eyelash-only) — arrow keys + `&mo BUTTON`
+    in the middle (was Enter in the vendor keymap, but Enter is
+    already on K35 thumb).
+  - **Row 4 extras** (Eyelash-only, 2 per side) — modifier keys the
+    vendor put there (LCTRL, RSHFT), with `LGUI → LALT` on the left
+    (LGUI is on the A home-row-mod) and `DEL → RALT` on the right
+    (DEL is on the K37 thumb tap).
+
+  The trade-off is that these keys are **not** layer-aware — the
+  number row always types digits, even on the FUN layer.
+
 - **Soft-off kludge instead of bootloader.** `MIRYOKU_KLUDGE_SOFT_OFF`
   routes Miryoku's "bootloader" corner key to `&soft_off`. Combined with
   the 2000 ms `hold-time-ms` we already configure, a single tap does
@@ -611,6 +635,10 @@ zmk-sofle/
 
 - **[Miryoku]** — Manna Harbour. The layout, the reference manual, and
   the ZMK implementation this fork is built on.
+- **[Juraj Fiala's Miryoku-on-Sofle post](https://jurf.github.io/2023/07/11/60-percent-miryoku/)**
+  — the specific pattern for adapting Miryoku's 36-key core to a
+  56-key Sofle. This repo extends it to the Eyelash Sofle's 64-key
+  variant.
 - **[a741725193/zmk-sofle]** — the Eyelash Sofle board definition and
   vendor firmware this repo forked from.
 - **[cormoran/zmk]** — the ZMK fork (`v0.3-branch+dya`) providing
