@@ -27,7 +27,7 @@ layers:
   - O
   - P
   - {t: \, s: '|'}
-  - $$mdi:alpha-w-box$$
+  - $$mdi:apple-keyboard-option$$
   - {t: A, h: LGUI}
   - {t: S, h: '$$mdi:apple-keyboard-option$$'}
   - {t: D, h: '$$mdi:apple-keyboard-control$$'}
@@ -39,7 +39,7 @@ layers:
   - {t: K, h: '$$mdi:apple-keyboard-control$$'}
   - {t: L, h: '$$mdi:apple-keyboard-option$$'}
   - {t: '''', h: LGUI, s: '"'}
-  - {t: ;, s: ':'}
+  - {t: '''', s: '"'}
   - $$mdi:apple-keyboard-shift$$
   - {t: Z, h: Button}
   - {t: X, h: '$$mdi:apple-keyboard-option$$'}
@@ -92,7 +92,7 @@ layers:
   - O
   - P
   - {t: \, s: '|'}
-  - $$mdi:alpha-w-box$$
+  - $$mdi:apple-keyboard-option$$
   - {t: A, h: LGUI}
   - {t: S, h: '$$mdi:apple-keyboard-option$$'}
   - {t: D, h: '$$mdi:apple-keyboard-control$$'}
@@ -104,7 +104,7 @@ layers:
   - {t: K, h: '$$mdi:apple-keyboard-control$$'}
   - {t: L, h: '$$mdi:apple-keyboard-option$$'}
   - {t: '''', h: LGUI, s: '"'}
-  - {t: ;, s: ':'}
+  - {t: '''', s: '"'}
   - $$mdi:apple-keyboard-shift$$
   - {t: Z, h: Button}
   - {t: X, h: '$$mdi:apple-keyboard-option$$'}
@@ -157,7 +157,7 @@ layers:
   - Y
   - {t: '''', s: '"'}
   - {t: \, s: '|'}
-  - $$mdi:alpha-w-box$$
+  - $$mdi:apple-keyboard-option$$
   - A
   - R
   - S
@@ -169,7 +169,7 @@ layers:
   - E
   - I
   - O
-  - {t: ;, s: ':'}
+  - {t: '''', s: '"'}
   - $$mdi:apple-keyboard-shift$$
   - Z
   - X
@@ -222,7 +222,7 @@ layers:
   - Sft+$$mdi:backspace-reverse-outline$$
   - UNDO
   - {t: \, s: '|'}
-  - $$mdi:alpha-w-box$$
+  - $$mdi:apple-keyboard-option$$
   - LGUI
   - $$mdi:apple-keyboard-option$$
   - $$mdi:apple-keyboard-control$$
@@ -234,7 +234,7 @@ layers:
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
   - LGUI
-  - {t: ;, s: ':'}
+  - {t: '''', s: '"'}
   - $$mdi:apple-keyboard-shift$$
   - {t: UNDO, type: held}
   - Sft+$$mdi:backspace-reverse-outline$$
@@ -287,7 +287,7 @@ layers:
   - Sft+$$mdi:backspace-reverse-outline$$
   - UNDO
   - {t: \, s: '|'}
-  - $$mdi:alpha-w-box$$
+  - $$mdi:apple-keyboard-option$$
   - LGUI
   - $$mdi:apple-keyboard-option$$
   - $$mdi:apple-keyboard-control$$
@@ -299,7 +299,7 @@ layers:
   - $$mdi:arrow-down-bold$$
   - $$mdi:arrow-up-bold$$
   - $$mdi:arrow-right-bold$$
-  - {t: ;, s: ':'}
+  - {t: '''', s: '"'}
   - $$mdi:apple-keyboard-shift$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-option$$
@@ -352,7 +352,7 @@ layers:
   - Sft+$$mdi:backspace-reverse-outline$$
   - UNDO
   - {t: \, s: '|'}
-  - $$mdi:alpha-w-box$$
+  - $$mdi:apple-keyboard-option$$
   - LGUI
   - $$mdi:apple-keyboard-option$$
   - $$mdi:apple-keyboard-control$$
@@ -364,7 +364,7 @@ layers:
   - {t: '$$mdi:menu-down$$', s: '$$mdi:mouse$$'}
   - {t: '$$mdi:menu-up$$', s: '$$mdi:mouse$$'}
   - {t: '$$mdi:menu-right$$', s: '$$mdi:mouse$$'}
-  - {t: ;, s: ':'}
+  - {t: '''', s: '"'}
   - $$mdi:apple-keyboard-shift$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-option$$
@@ -417,7 +417,7 @@ layers:
   - {t: SAT+, s: SAT-}
   - {t: BRI+, s: BRI-}
   - {t: \, s: '|'}
-  - $$mdi:alpha-w-box$$
+  - $$mdi:apple-keyboard-option$$
   - LGUI
   - $$mdi:apple-keyboard-option$$
   - $$mdi:apple-keyboard-control$$
@@ -429,7 +429,7 @@ layers:
   - $$mdi:volume-low$$
   - $$mdi:volume-high$$
   - $$mdi:skip-next$$
-  - {t: ;, s: ':'}
+  - {t: '''', s: '"'}
   - $$mdi:apple-keyboard-shift$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-option$$
@@ -482,7 +482,7 @@ layers:
   - {t: Tap, type: toggle}
   - {t: '$$mdi:power-standby$$', type: bootloader}
   - {t: \, s: '|'}
-  - $$mdi:alpha-w-box$$
+  - $$mdi:apple-keyboard-option$$
   - {t: ;, s: ':'}
   - {t: '4', s: $}
   - {t: '5', s: '%'}
@@ -494,7 +494,7 @@ layers:
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
   - LGUI
-  - {t: ;, s: ':'}
+  - {t: '''', s: '"'}
   - $$mdi:apple-keyboard-shift$$
   - {t: '`', s: '~'}
   - {t: '1', s: '!'}
@@ -547,7 +547,7 @@ layers:
   - {t: Tap, type: toggle}
   - {t: '$$mdi:power-standby$$', type: bootloader}
   - {t: \, s: '|'}
-  - $$mdi:alpha-w-box$$
+  - $$mdi:apple-keyboard-option$$
   - ':'
   - $
   - '%'
@@ -559,7 +559,7 @@ layers:
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
   - LGUI
-  - {t: ;, s: ':'}
+  - {t: '''', s: '"'}
   - $$mdi:apple-keyboard-shift$$
   - '~'
   - '!'
@@ -612,7 +612,7 @@ layers:
   - {t: Tap, type: toggle}
   - {t: '$$mdi:power-standby$$', type: bootloader}
   - {t: \, s: '|'}
-  - $$mdi:alpha-w-box$$
+  - $$mdi:apple-keyboard-option$$
   - F11
   - F4
   - F5
@@ -624,7 +624,7 @@ layers:
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
   - LGUI
-  - {t: ;, s: ':'}
+  - {t: '''', s: '"'}
   - $$mdi:apple-keyboard-shift$$
   - F10
   - F1
