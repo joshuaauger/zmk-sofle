@@ -251,13 +251,13 @@ layers:
   - $$mdi:volume-off$$
   - $$mdi:apple-keyboard-control$$
   - LGUI
-  - '&mkp MB3'
-  - '&mkp MB1'
-  - '&mkp MB2'
+  - $$mdi:mouse-scroll-wheel$$
+  - $$mdi:mouse-left-click-outline$$
+  - $$mdi:mouse-right-click-outline$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - '&mkp MB2'
-  - '&mkp MB1'
-  - '&mkp MB3'
+  - $$mdi:mouse-right-click-outline$$
+  - $$mdi:mouse-left-click-outline$$
+  - $$mdi:mouse-scroll-wheel$$
   - $$mdi:apple-keyboard-shift$$
   - $$mdi:backspace-reverse-outline$$
   Nav:
@@ -275,10 +275,10 @@ layers:
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
   - $$mdi:keyboard-tab$$
-  - '&soft_off'
-  - '&u_to_U_TAP'
-  - '&u_to_U_EXTRA'
-  - '&u_to_U_BASE'
+  - {t: '$$mdi:power-standby$$', type: bootloader}
+  - {t: Tap, type: toggle}
+  - {t: Extra, type: toggle}
+  - {t: Base, type: toggle}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-down-bold$$
   - AGAIN
@@ -303,8 +303,8 @@ layers:
   - $$mdi:apple-keyboard-shift$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-option$$
-  - '&u_to_U_NUM'
-  - '&u_to_U_NAV'
+  - {t: Num, type: toggle}
+  - {t: Nav, type: toggle}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-right-bold$$
   - INS
@@ -340,10 +340,10 @@ layers:
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
   - $$mdi:keyboard-tab$$
-  - '&soft_off'
-  - '&u_to_U_TAP'
-  - '&u_to_U_EXTRA'
-  - '&u_to_U_BASE'
+  - {t: '$$mdi:power-standby$$', type: bootloader}
+  - {t: Tap, type: toggle}
+  - {t: Extra, type: toggle}
+  - {t: Base, type: toggle}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-down-bold$$
   - AGAIN
@@ -368,8 +368,8 @@ layers:
   - $$mdi:apple-keyboard-shift$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-option$$
-  - '&u_to_U_SYM'
-  - '&u_to_U_MOUSE'
+  - {t: Sym, type: toggle}
+  - {t: Mouse, type: toggle}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-right-bold$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -385,9 +385,9 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - '&mkp MB2'
-  - '&mkp MB1'
-  - '&mkp MB3'
+  - $$mdi:mouse-right-click-outline$$
+  - $$mdi:mouse-left-click-outline$$
+  - $$mdi:mouse-scroll-wheel$$
   - $$mdi:apple-keyboard-shift$$
   - $$mdi:backspace-reverse-outline$$
   Media:
@@ -405,17 +405,17 @@ layers:
   - {t: '0', s: )}
   - {t: '$$mdi:backspace$$', type: backspace}
   - $$mdi:keyboard-tab$$
-  - '&soft_off'
-  - '&u_to_U_TAP'
-  - '&u_to_U_EXTRA'
-  - '&u_to_U_BASE'
+  - {t: '$$mdi:power-standby$$', type: bootloader}
+  - {t: Tap, type: toggle}
+  - {t: Extra, type: toggle}
+  - {t: Base, type: toggle}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-down-bold$$
-  - {t: RGB TOG, s: RGB OFF}
-  - {t: RGB EFF, s: RGB EFR}
-  - {t: RGB HUI, s: RGB HUD}
-  - {t: RGB SAI, s: RGB SAD}
-  - {t: RGB BRI, s: RGB BRD}
+  - {t: RGB, s: 'OFF'}
+  - {t: EFF, s: EFF-}
+  - {t: HUE+, s: HUE-}
+  - {t: SAT+, s: SAT-}
+  - {t: BRI+, s: BRI-}
   - {t: \, s: '|'}
   - $$mdi:alpha-w-box$$
   - LGUI
@@ -424,7 +424,7 @@ layers:
   - $$mdi:apple-keyboard-shift$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-left-bold$$
-  - {t: EP TOG, s: EP OFF}
+  - {t: EP, s: EP OFF}
   - $$mdi:skip-previous$$
   - $$mdi:volume-low$$
   - $$mdi:volume-high$$
@@ -433,15 +433,15 @@ layers:
   - $$mdi:apple-keyboard-shift$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-option$$
-  - '&u_to_U_FUN'
-  - '&u_to_U_MEDIA'
+  - {t: Fun, type: toggle}
+  - {t: Media, type: toggle}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:arrow-right-bold$$
-  - {t: '$$mdi:toggle-switch$$', h: '$$mdi:bluetooth$$', s: OUT USB}
-  - {h: '1', s: '&u_macro_u_bt_sel_0'}
-  - {h: '2', s: '&u_macro_u_bt_sel_1'}
-  - {h: '3', s: '&u_macro_u_bt_sel_2'}
-  - {h: '4', s: '&u_macro_u_bt_sel_3'}
+  - {t: '$$mdi:toggle-switch$$', s: '$$mdi:usb$$'}
+  - {t: '1', s: '$$mdi:bluetooth-off$$'}
+  - {t: '2', s: '$$mdi:bluetooth-off$$'}
+  - {t: '3', s: '$$mdi:bluetooth-off$$'}
+  - {t: '4', s: '$$mdi:bluetooth-off$$'}
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - $$mdi:volume-off$$
   - $$mdi:apple-keyboard-control$$
@@ -477,10 +477,10 @@ layers:
   - {t: ']', s: '}'}
   - $$mdi:arrow-down-bold$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - '&u_to_U_BASE'
-  - '&u_to_U_EXTRA'
-  - '&u_to_U_TAP'
-  - '&soft_off'
+  - {t: Base, type: toggle}
+  - {t: Extra, type: toggle}
+  - {t: Tap, type: toggle}
+  - {t: '$$mdi:power-standby$$', type: bootloader}
   - {t: \, s: '|'}
   - $$mdi:alpha-w-box$$
   - {t: ;, s: ':'}
@@ -503,8 +503,8 @@ layers:
   - {t: \, s: '|'}
   - $$mdi:arrow-right-bold$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - '&u_to_U_NUM'
-  - '&u_to_U_NAV'
+  - {t: Num, type: toggle}
+  - {t: Nav, type: toggle}
   - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:keyboard-return$$', type: enter}
@@ -542,10 +542,10 @@ layers:
   - '}'
   - $$mdi:arrow-down-bold$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - '&u_to_U_BASE'
-  - '&u_to_U_EXTRA'
-  - '&u_to_U_TAP'
-  - '&soft_off'
+  - {t: Base, type: toggle}
+  - {t: Extra, type: toggle}
+  - {t: Tap, type: toggle}
+  - {t: '$$mdi:power-standby$$', type: bootloader}
   - {t: \, s: '|'}
   - $$mdi:alpha-w-box$$
   - ':'
@@ -568,8 +568,8 @@ layers:
   - '|'
   - $$mdi:arrow-right-bold$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - '&u_to_U_SYM'
-  - '&u_to_U_MOUSE'
+  - {t: Sym, type: toggle}
+  - {t: Mouse, type: toggle}
   - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:keyboard-return$$', type: enter}
@@ -607,10 +607,10 @@ layers:
   - $$mdi:printer-outline$$
   - $$mdi:arrow-down-bold$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - '&u_to_U_BASE'
-  - '&u_to_U_EXTRA'
-  - '&u_to_U_TAP'
-  - '&soft_off'
+  - {t: Base, type: toggle}
+  - {t: Extra, type: toggle}
+  - {t: Tap, type: toggle}
+  - {t: '$$mdi:power-standby$$', type: bootloader}
   - {t: \, s: '|'}
   - $$mdi:alpha-w-box$$
   - F11
@@ -633,8 +633,8 @@ layers:
   - PAUSE BREAK
   - $$mdi:arrow-right-bold$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - '&u_to_U_FUN'
-  - '&u_to_U_MEDIA'
+  - {t: Fun, type: toggle}
+  - {t: Media, type: toggle}
   - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:keyboard-return$$', type: enter}
@@ -652,4 +652,4 @@ layers:
   - $$mdi:backspace-reverse-outline$$
 combos:
 - p: [14, 28, 40]
-  k: '&soft_off'
+  k: {t: '$$mdi:power-standby$$', type: bootloader}
