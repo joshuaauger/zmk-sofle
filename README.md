@@ -10,6 +10,15 @@ keymap with Miryoku.
 [Miryoku]: https://github.com/manna-harbour/miryoku
 [a741725193/zmk-sofle]: https://github.com/a741725193/zmk-sofle
 
+## Layout at a glance
+
+![Miryoku QWERTY on the Eyelash Sofle](keymap-drawer/eyelash_sofle.svg)
+
+> This SVG is regenerated automatically by the
+> [keymap-drawer bot](https://github.com/caksoylar/keymap-drawer-action) on
+> every push to `main`. If it looks stale, `git pull --rebase` — the bot
+> commits directly on top of your push.
+
 ---
 
 ## Contents
@@ -20,6 +29,9 @@ keymap with Miryoku.
 - [Physical key mapping on the Eyelash Sofle](#physical-key-mapping-on-the-eyelash-sofle)
 - [Design decisions](#design-decisions)
 - [Preserved Eyelash-specific behaviour](#preserved-eyelash-specific-behaviour)
+- [RGB, backlight, and power behaviour](#rgb-backlight-and-power-behaviour)
+- [nice!view display](#niceview-display)
+- [Modules in use / worth trying](#modules-in-use--worth-trying)
 - [Building](#building)
 - [Flashing](#flashing)
 - [Studio (live remapping)](#studio-live-remapping)
@@ -50,14 +62,25 @@ keymap with Miryoku.
 
 The Eyelash Sofle is a variant of the classic Sofle with:
 
-- 6 columns × 4 rows per hand + a thumb cluster,
-- an extra "inner middle" column of 4 keys per hand (arrows on the stock
-  layout),
-- two EC11 rotary encoders (one per half),
-- WS2812 underglow and per-key backlight,
-- built-in `nice!view` display support (both halves).
+- 5 × 14 matrix per side (columns 6 and, on row 4, columns 6 & 13 are
+  skipped by the transform — **64 total addressable keys**:
+  `13 + 13 + 13 + 13 + 12`).
+- 6 columns × 4 rows per hand plus a thumb cluster,
+- an extra "inner middle" column of 4 keys per hand (arrow diamond on
+  the stock layout, wired to the **right** half),
+- **one** EC11 rotary encoder (left half only — the right shield's
+  `CONFIG_EC11=y` is a leftover with no corresponding DT node),
+- WS2812 underglow: `chain-length = <7>` per side on `spi3` (14 LEDs
+  total),
+- a single amber PWM backlight LED (`pwm0`, GPIO P1.13, driven by
+  `zmk,backlight`),
+- a **nice!view** 68 × 140 monochrome SHARP Memory LCD stacked via
+  `build.yaml` (`shield: eyelash_sofle_left|right nice_view`). The
+  shield's `Kconfig.defconfig` defaults `CONFIG_SSD1306=y` as a fallback
+  for units that ship with an SSD1306 OLED instead, but no matching DT
+  node is present so that driver is dormant in this build.
 
-Total addressable positions: **64 keys** (13 + 13 + 13 + 13 + 12).
+See `boards/shields/eyelash_sofle/eyelash_sofle.dtsi` for the full DT.
 
 ---
 
@@ -245,6 +268,166 @@ Everything else (RGB, backlight, BT, ext-power, sleep, EC11 debounce,
 Bluetooth TX power, 32 kHz XTAL) comes from `config/eyelash_sofle.conf`,
 which was left untouched.
 
+The shield's own `boards/shields/eyelash_sofle/eyelash_sofle_left.conf`
+also enables (independently of `config/eyelash_sofle.conf`):
+
+- `CONFIG_ZMK_STUDIO=y`
+- `CONFIG_ZMK_BLE_MANAGEMENT=y` + studio RPC
+- `CONFIG_ZMK_RUNTIME_INPUT_PROCESSOR=y` + studio RPC
+- `CONFIG_ZMK_SETTINGS_RPC=y` + studio
+- `CONFIG_ZMK_RUNTIME_SENSOR_ROTATE=y` + studio RPC
+- `CONFIG_ZMK_SPLIT_RELAY_EVENT=y` (needed so peripheral-side battery /
+  input events surface on the central)
+- `CONFIG_ZMK_BATTERY_HISTORY=n` (explicitly disabled by the shield;
+  flip to `=y` in `config/eyelash_sofle.conf` if you want per-day
+  battery graphs via DYA Studio)
+
+That means my `build.yaml`'s `-DCONFIG_ZMK_STUDIO=y` cmake-arg and
+`studio-rpc-usb-uart` snippet are technically redundant on top of what
+the shield already turns on — they're kept as belt-and-suspenders so the
+build still works if someone reuses `build.yaml` on a stripped-down
+shield.
+
+---
+
+## RGB, backlight, and power behaviour
+
+Both the underglow (WS2812) and the amber backlight LED are enabled and
+tuned in `config/eyelash_sofle.conf`. They behave very differently —
+here's what to expect, and why:
+
+### RGB underglow (WS2812, `chain-length = <7>`)
+
+| Setting                                  | Value   | Meaning                                                     |
+| ---------------------------------------- | ------- | ----------------------------------------------------------- |
+| `CONFIG_ZMK_RGB_UNDERGLOW`               | `y`     | Underglow is compiled in.                                   |
+| `CONFIG_ZMK_RGB_UNDERGLOW_EXT_POWER`     | `y`     | RGB power is gated via `ext-power` (saves battery).         |
+| `CONFIG_ZMK_RGB_UNDERGLOW_ON_START`      | **`n`** | RGB stays **off** at boot — you must toggle it on manually. |
+| `CONFIG_ZMK_RGB_UNDERGLOW_AUTO_OFF_USB`  | **`y`** | RGB turns off whenever USB is plugged in.                   |
+| `CONFIG_ZMK_RGB_UNDERGLOW_AUTO_OFF_IDLE` | `y`     | RGB turns off after idle-sleep timeout (1 h).               |
+| `CONFIG_ZMK_RGB_UNDERGLOW_BRT_MAX`       | `60`    | Brightness capped at 60 % to spare battery.                 |
+| `CONFIG_ZMK_RGB_UNDERGLOW_HUE_START`     | `160`   | Boots at a cyan-ish hue.                                    |
+| `CONFIG_ZMK_RGB_UNDERGLOW_EFF_START`     | `3`     | Boots in effect #3 (breathing).                             |
+
+**Yes, RGB is enabled — but the combination of `ON_START=n` and
+`AUTO_OFF_USB=y` means it will stay dark whenever the keyboard is
+plugged into USB.** To see it, either unplug and go BLE, or toggle it
+on manually via the Miryoku **MEDIA** layer:
+
+- Hold left tertiary thumb (Esc → MEDIA), then tap the top-right
+  positions: `RGB_TOG`, `RGB_EFF`, `RGB_HUI`, `RGB_SAI`, `RGB_BRI`.
+- With `MIRYOKU_KLUDGE_GLOBALSHIFTFUNCTIONS` on (which we set), holding
+  Shift while pressing those keys inverts them (`RGB_OFF`, `RGB_EFR`,
+  `RGB_HUD`, …).
+- `EP_TOG` on the MEDIA layer toggles ext-power for the whole strip.
+
+### Backlight (single amber PWM LED)
+
+| Setting                              | Value   |
+| ------------------------------------ | ------- |
+| `CONFIG_ZMK_BACKLIGHT`               | `y`     |
+| `CONFIG_ZMK_BACKLIGHT_ON_START`      | **`y`** |
+| `CONFIG_ZMK_BACKLIGHT_BRT_START`     | `100`   |
+| `CONFIG_ZMK_BACKLIGHT_AUTO_OFF_IDLE` | `n`     |
+
+Unlike RGB, the amber backlight LED **is on by default**. Miryoku's
+MEDIA layer doesn't include `&bl` bindings by default; if you want to
+bind one, add it in a `keymap { MEDIA { bindings = < … >; }; }` override
+in `config/eyelash_sofle.keymap`.
+
+### Power / sleep
+
+- `CONFIG_ZMK_SLEEP=y`, `CONFIG_ZMK_IDLE_SLEEP_TIMEOUT=3600000` — the
+  board deep-sleeps after **one hour** of inactivity.
+- `CONFIG_ZMK_PM_SOFT_OFF=y` — the `&soft_off` behaviour is what powers
+  the keyboard fully down (hold 2 s or the `Q+S+Z` combo).
+
+---
+
+## nice!view display
+
+Both halves render to a **nice!view** shield (68 × 140 mono SHARP-memory
+LCD) stacked via `build.yaml`. The nice!view shield brings its own
+display node, driver, and default widgets (layer name + battery on the
+left, wallpaper on the right).
+
+What we already get for free:
+
+- **Layer name** shows up on the central-side widget because Miryoku's
+  `miryoku.dtsi` sets `display-name = "Base" / "Nav" / …` on every layer
+  (see `MIRYOKU_LAYER_LIST` in `config/miryoku/miryoku_babel/`).
+- **BT profile indicator** and **battery percentage** are the nice!view
+  defaults on the central.
+- **Peripheral battery** shows on the right half's own widget.
+
+Ideas worth trying (none of these are in this repo yet):
+
+- **`caksoylar/zmk-nice-view-gem`** or **`englmaxi/zmk-nice-oled`** —
+  richer nice!view widget replacements (layer icons, BT/HID indicators,
+  WPM, etc.).
+- **Bongo cat / WPM widget** (e.g. `caksoylar/zmk-nice-view-gem` or
+  `mctechnology17/zmk-nice-view-gem`) if you want the animated cat
+  keeping pace with your typing.
+- **Custom layer glyphs** — render an icon per Miryoku layer instead of
+  the string. The `display-name` string is already available; we'd add
+  a small widget module and pick icons per layer.
+- **Encoder tracker overlay** — nice!view's dedicated widget slot can
+  show the current sensor-rotate binding (e.g. "VOL" / "PGUP-PGDN") —
+  useful once we add per-layer encoder bindings.
+
+See the [Modules](#modules-in-use--worth-trying) section for how to add
+one.
+
+---
+
+## Modules in use / worth trying
+
+### Already pulled in via `config/west.yml`
+
+| Module                                        | What it gives us                                                              |
+| --------------------------------------------- | ----------------------------------------------------------------------------- |
+| `cormoran/zmk` (`v0.3-branch+dya`)            | The fork itself — pointing, DYA studio, custom behaviours, split extras.      |
+| `cormoran/zmk-behavior-runtime-sensor-rotate` | `&rsr_*` behaviours — re-bind encoders live from ZMK/DYA Studio.              |
+| `cormoran/zmk-module-ble-management`          | BLE profile management + Studio RPC.                                          |
+| `cormoran/zmk-module-battery-history`         | Per-day battery graph (needs `CONFIG_ZMK_BATTERY_HISTORY=y`; off by default). |
+| `cormoran/zmk-module-settings-rpc`            | Save/restore ZMK settings via Studio.                                         |
+| `cormoran/zmk-module-runtime-input-processor` | Re-configure pointer input processors live.                                   |
+
+### Worth investigating
+
+These are all drop-in ZMK modules that would enrich the build without
+invalidating any Miryoku assumptions:
+
+- **`urob/zmk-helpers`** — DT macro sugar (`KEYS_L` / `KEYS_R`,
+  hold-tap presets, home-row-mod helpers, etc.). Would let us collapse a
+  lot of the Miryoku boilerplate.
+- **`urob/zmk-auto-layer`** — auto-activate a layer after typing certain
+  prefix keys (e.g. auto-NUM on `.` when in a number sequence).
+- **`caksoylar/zmk-tricks`** — grab-bag of small behaviours (leader
+  keys, adaptive keys, better sticky mods, etc.).
+- **`nick-coutsos/zmk-adaptive-key`** — context-dependent keys ("if
+  previous key was X, produce Y").
+- **`infused-kim/zmk-tri-state`** — tri-state behaviour used for
+  auto-shift, smart-shift, and similar three-state gestures.
+- **`caksoylar/zmk-nice-view-gem`** — much richer nice!view widget
+  (see [display section](#niceview-display)).
+- **`englmaxi/zmk-nice-oled`** — alternative widget suite with layer
+  icons + bongo cat.
+- **`petejohanson/zmk-fingerprint-scanner`** style modules — only
+  interesting if we ever add a trackpad/trackpoint.
+
+Adding one is a two-line change to `config/west.yml`:
+
+```yaml
+projects:
+  - name: zmk-helpers
+    remote: urob
+    revision: main
+```
+
+plus a matching `- name: urob\n  url-base: https://github.com/urob` entry
+under `remotes:`.
+
 ---
 
 ## Building
@@ -335,7 +518,7 @@ zmk-sofle/
 │   │   ├── miryoku_shift_functions.dtsi
 │   │   └── miryoku_kludge_*.dtsi      # Optional workarounds (thumb combos, tap delay, …)
 │   └── west.yml                       # ZMK + module dependencies (cormoran fork)
-├── keymap-drawer/                     # SVG renders (STALE — see below)
+├── keymap-drawer/                     # Auto-regenerated SVG renders (drawer bot on push)
 ├── build.yaml                         # GitHub Actions build matrix
 └── README.md                          # (this file)
 ```
@@ -346,11 +529,6 @@ zmk-sofle/
 
 ### Known issues
 
-- **Keymap-drawer SVGs are stale.** `keymap-drawer/eyelash_sofle.svg` and
-  the associated YAML were tuned for the vendor layout. Rendering the
-  Miryoku layout will produce something correct but visually noisy until
-  the `raw_binding_map` in `keymap_drawer.config.yaml` is retuned for
-  Miryoku's `&u_mt` / `&u_lt` / `&u_to_U_*` bindings.
 - **DT node names are uppercase (`BASE`, `NAV`, …).** These come straight
   from the Miryoku macro. dtc accepts them, but some editors / linters
   complain. Not a real problem, but noisy.
@@ -363,6 +541,14 @@ zmk-sofle/
   That's a deliberate trade-off (see [Design decisions](#design-decisions))
   — if you want layer-specific behaviour on the extras, override them
   per-layer via a `keymap { LAYER { bindings = <…>; }; };` block.
+- **`build.yaml` redundantly sets `CONFIG_ZMK_STUDIO=y`** and includes
+  the `studio-rpc-usb-uart` snippet even though the shield's
+  `eyelash_sofle_left.conf` already turns Studio on. Harmless, but worth
+  cleaning up on the next pass.
+- **RGB stays off on USB.** By design (see
+  [RGB, backlight, and power behaviour](#rgb-backlight-and-power-behaviour))
+  — flip `CONFIG_ZMK_RGB_UNDERGLOW_AUTO_OFF_USB=n` in
+  `config/eyelash_sofle.conf` if you want it lit while wired.
 
 ### Potential improvements
 
@@ -374,9 +560,6 @@ zmk-sofle/
   outer pinkies are the same on every layer. Overriding e.g. the number
   row to become F1–F10 on the FUN layer would recover Miryoku's original
   layered semantics.
-- **Retune keymap-drawer for Miryoku.** Add `&u_mt`, `&u_lt`, and
-  `&u_to_U_*` entries to `raw_binding_map` and regenerate the SVG so it
-  can be embedded here.
 - **Add a Colemak-DH build in `build.yaml`.** Set `MIRYOKU_ALPHAS_COLEMAKDH`
   via `cmake-args: -DCONFIG_…=y` — or provide a second keymap file — for
   users who want to try Miryoku "as designed".
@@ -386,6 +569,11 @@ zmk-sofle/
 - **Investigate `MIRYOKU_KLUDGE_TAPDELAY`.** Miryoku's default tap-hold
   timings can feel slow. The tap-delay kludge tightens things up. Worth
   trying if hold-tap misfires are annoying.
+- **Custom nice!view widgets.** See
+  [nice!view display](#niceview-display) — layer icons, bongo cat, WPM,
+  encoder-binding indicator, etc.
+- **Add `urob/zmk-helpers`** and rewrite the keymap using its
+  `HRM(TAP, HOLD)` / `KEYS_L` / `KEYS_R` macros for readability.
 - **Combos beyond `softoff`.** The Sofle has plenty of key real estate
   for combos (bracket pairs, escape on `Q+W`, etc.). Left as-is for now
   to avoid competing with Miryoku's home-row mods.

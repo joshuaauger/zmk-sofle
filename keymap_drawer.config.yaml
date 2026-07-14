@@ -117,6 +117,108 @@ parse_config:
     type: trans
 
   raw_binding_map:
+    # -----------------------------------------------------------------
+    # Miryoku bindings (see config/miryoku/) — these dominate the layout
+    # -----------------------------------------------------------------
+
+    # Layer switchers (double-tap guarded &to wrappers)
+    "&u_to_U_BASE":
+      tap: Base
+      type: toggle
+    "&u_to_U_EXTRA":
+      tap: Extra
+      type: toggle
+    "&u_to_U_TAP":
+      tap: Tap
+      type: toggle
+    "&u_to_U_BUTTON":
+      tap: Btn
+      type: toggle
+    "&u_to_U_NAV":
+      tap: Nav
+      type: toggle
+    "&u_to_U_MOUSE":
+      tap: Mouse
+      type: toggle
+    "&u_to_U_MEDIA":
+      tap: Media
+      type: toggle
+    "&u_to_U_NUM":
+      tap: Num
+      type: toggle
+    "&u_to_U_SYM":
+      tap: Sym
+      type: toggle
+    "&u_to_U_FUN":
+      tap: Fun
+      type: toggle
+
+    # CapsWord shift-morph (Shift = CapsLock)
+    "&u_caps_word":
+      tap: $$mdi:alpha-w-box$$
+      shifted: $$mdi:apple-keyboard-caps$$
+
+    # Output toggle (Shift = force USB)
+    "&u_out_tog":
+      tap: $$mdi:toggle-switch$$
+      shifted: $$mdi:usb$$
+
+    # Bluetooth profile shift-morphs (Shift = select + clear)
+    "&u_bt_sel_0":
+      tap: '1'
+      shifted: $$mdi:bluetooth-off$$
+    "&u_bt_sel_1":
+      tap: '2'
+      shifted: $$mdi:bluetooth-off$$
+    "&u_bt_sel_2":
+      tap: '3'
+      shifted: $$mdi:bluetooth-off$$
+    "&u_bt_sel_3":
+      tap: '4'
+      shifted: $$mdi:bluetooth-off$$
+    "&u_bt_sel_4":
+      tap: '5'
+      shifted: $$mdi:bluetooth-off$$
+
+    # RGB shift-morphs (Shift = decrement / off)
+    "&u_rgb_tog":
+      tap: RGB
+      shifted: 'OFF'
+    "&u_rgb_eff":
+      tap: EFF
+      shifted: EFF-
+    "&u_rgb_hui":
+      tap: HUE+
+      shifted: HUE-
+    "&u_rgb_sai":
+      tap: SAT+
+      shifted: SAT-
+    "&u_rgb_bri":
+      tap: BRI+
+      shifted: BRI-
+
+    # External power (Shift = force off)
+    "&u_ep_tog":
+      tap: EP
+      shifted: EP OFF
+
+    # Mouse buttons (raw &mkp forms used by Miryoku BUTTON/MOUSE layers)
+    "&mkp MB1": $$mdi:mouse-left-click-outline$$
+    "&mkp MB2": $$mdi:mouse-right-click-outline$$
+    "&mkp MB3": $$mdi:mouse-scroll-wheel$$
+    "&mkp LCLK": $$mdi:mouse-left-click-outline$$
+    "&mkp RCLK": $$mdi:mouse-right-click-outline$$
+    "&mkp MCLK": $$mdi:mouse-scroll-wheel$$
+
+    # Soft-off / bootloader
+    "&soft_off":
+      tap: $$mdi:power-standby$$
+      type: bootloader
+
+    # -----------------------------------------------------------------
+    # Legacy vendor-keymap bindings (kept for backwards compat)
+    # -----------------------------------------------------------------
+
     # Layers
     "&ltq 1 BACKSPACE":
       tap:  $$mdi:backspace$$
@@ -318,10 +420,10 @@ parse_config:
     SQT:
       tap: "'"
       shifted: '"'
-    APOSTROPHE: 
+    APOSTROPHE:
       tap: "'"
       shifted: '"'
-    APOS: 
+    APOS:
       tap: "'"
       shifted: '"'
     DOUBLE_QUOTES: '"'
@@ -492,7 +594,7 @@ parse_config:
     C_AL_LOCK: $$mdi:lock$$
     K_CANCEL: $$mdi:close-box$$
     K_FIND: $$mdi:apple-finder$$
-    # Command + 
+    # Command +
     LG(A):
       tap: 'A'
       hold: $$mdi:apple-keyboard-command$$
