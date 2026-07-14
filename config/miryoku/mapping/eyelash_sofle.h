@@ -90,10 +90,16 @@
 #define ES_R0_R6    &kp BSPC
 
 // Outer pinky columns for rows 1..3.
+// Row 2 outer left is where the vendor put CAPS. We don't want caps in any
+// form (regular or word) — use it to restore LALT, which the vendor had on
+// row 4 col 3 (leftmost thumb). Miryoku claims that thumb slot, so LALT
+// needs a new home; the outer pinky is the closest reachable spot.
+// Row 2 outer right restores the vendor's APOS (shifted = double-quote) so
+// you don't have to hold LGUI on the P/SQT home-row mod to type quotes.
 #define ES_R1_L0    &kp TAB
 #define ES_R1_R6    &kp BSLH
-#define ES_R2_L0    &caps_word
-#define ES_R2_R6    &kp SEMI       // ':' when shifted — Miryoku's SQT is on K19
+#define ES_R2_L0    &kp LALT       // was &caps_word; user never uses caps
+#define ES_R2_R6    &kp APOS       // matches vendor keymap; shifted = "
 #define ES_R3_L0    &kp LSHFT
 #define ES_R3_R6    &kp ENTER      // second Enter, mirrors vendor keymap
 

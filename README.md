@@ -151,7 +151,7 @@ Row 1 (top alpha, y ≈ 1.25):
   Tab  Q   W   E   R   T      DOWN       Y   U   I   O   P   \
 
 Row 2 (home row, y ≈ 2.25):
-  CW*  A/⌘ S/⌥ D/⌃ F/⇧ G      LEFT       H   J/⇧ K/⌃ L/⌥ '/⌘ ;
+  ⌥    A/⌘ S/⌥ D/⌃ F/⇧ G      LEFT       H   J/⇧ K/⌃ L/⌥ '/⌘ '
 
 Row 3 (bottom alpha, y ≈ 3.25):
   ⇧    Z*  X/⌥ᴿ C   V   B      RIGHT      N   M   ,   ./⌥ᴿ /*  Enter
@@ -161,7 +161,11 @@ Row 4 (thumbs + encoder + arrow-center):
            |  MED NAV MOU     [ctr]      SYM NUM FUN
 ```
 
-- `CW*` = `&caps_word` (tap-to-shift-word).
+- Row 2 outer-left pinky is **`LALT`** (the vendor had CAPS there; we
+  dropped caps entirely and used the slot to restore LALT, which
+  Miryoku's canonical thumb layout had displaced).
+- Row 2 outer-right pinky is `'` (apostrophe, shifted = `"`) matching
+  the vendor keymap.
 - Home-row mods (LGUI / LALT / LCTRL / LSHFT on the left; mirrored on
   the right) fire on hold, letter fires on tap.
 - `Z*` and `/*` are layer-taps to the **BUTTON** layer.
@@ -180,6 +184,29 @@ Encoder rotation:
 
 The mapping macro is defined in
 [`config/miryoku/mapping/eyelash_sofle.h`](config/miryoku/mapping/eyelash_sofle.h).
+
+### Where did the vendor's `mo 1` / `mo 2` layer keys go?
+
+The vendor keymap had **explicit** momentary layer switches:
+
+- Row 4 col 4 (left middle thumb) = `&mo 1`
+- Row 4 col 10 (right outer thumb) = `&mo 2`
+
+Those positions are now **hold-tap** thumb keys (Miryoku's core design):
+
+- Row 4 col 4 = tap `SPACE`, **hold** → `NAV` layer
+- Row 4 col 10 = tap `DEL`, **hold** → `FUN` layer
+
+So the layers are still on the same physical keys — you just hold
+instead of tap-to-toggle. The tapping term is `200 ms` (`U_TAPPING_TERM`
+in `config/miryoku/miryoku.h`). If that feels sluggish, try enabling
+`MIRYOKU_KLUDGE_TAPDELAY` (see [Trying a different variant](#trying-a-different-variant)).
+
+If you want the old "tap-and-hold-to-momentarily-switch" style back, we
+can drop the layer-tap on those thumbs, restore `&kp SPACE` / `&kp DEL`
+as plain keys, and add dedicated `&mo NAV` / `&mo FUN` keys on cols 4
+and 10 respectively — keeping Miryoku's _layer contents_ but with the
+vendor's _layer-access ergonomics_. Ask if you want that variant.
 
 ---
 
