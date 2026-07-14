@@ -66,30 +66,30 @@ Total addressable positions: **64 keys** (13 + 13 + 13 + 13 + 12).
 Miryoku uses ten layers. Only the base layer is active by default; the
 others are held via a layer-tap on a thumb key on the opposite hand.
 
-| # | Layer  | Held from      | Purpose |
-|---|--------|----------------|---------|
-| 0 | BASE   | –              | QWERTY alphas + home-row mods + layer-tap thumbs |
-| 1 | EXTRA  | – (via BASE)   | Alternate base (also QWERTY in this build) |
-| 2 | TAP    | – (via BASE)   | Base without any hold-tap behaviour (for fast typing) |
-| 3 | BUTTON | Bottom pinkie  | Mouse buttons + mods + clipboard on both hands |
-| 4 | NAV    | Left primary   | Arrows, editing keys, clipboard |
-| 5 | MOUSE  | Left secondary | Mouse movement + scroll wheel |
-| 6 | MEDIA  | Left tertiary  | Media, RGB, Bluetooth, output toggle |
-| 7 | NUM    | Right primary  | Numpad + brackets |
-| 8 | SYM    | Right secondary| Shifted symbols |
-| 9 | FUN    | Right tertiary | F1–F12 + system keys |
+| #   | Layer  | Held from       | Purpose                                               |
+| --- | ------ | --------------- | ----------------------------------------------------- |
+| 0   | BASE   | –               | QWERTY alphas + home-row mods + layer-tap thumbs      |
+| 1   | EXTRA  | – (via BASE)    | Alternate base (also QWERTY in this build)            |
+| 2   | TAP    | – (via BASE)    | Base without any hold-tap behaviour (for fast typing) |
+| 3   | BUTTON | Bottom pinkie   | Mouse buttons + mods + clipboard on both hands        |
+| 4   | NAV    | Left primary    | Arrows, editing keys, clipboard                       |
+| 5   | MOUSE  | Left secondary  | Mouse movement + scroll wheel                         |
+| 6   | MEDIA  | Left tertiary   | Media, RGB, Bluetooth, output toggle                  |
+| 7   | NUM    | Right primary   | Numpad + brackets                                     |
+| 8   | SYM    | Right secondary | Shifted symbols                                       |
+| 9   | FUN    | Right tertiary  | F1–F12 + system keys                                  |
 
 ### Home-row mods (QWERTY)
 
 Held taps on the home row produce modifiers; short taps produce the
 letter as normal.
 
-| Left | A | S | D | F |
-|------|---|---|---|---|
+| Left | A     | S   | D       | F     |
+| ---- | ----- | --- | ------- | ----- |
 | Mod  | Super | Alt | Control | Shift |
 
-| Right | J | K | L | ' |
-|-------|---|---|---|---|
+| Right | J     | K       | L   | '     |
+| ----- | ----- | ------- | --- | ----- |
 | Mod   | Shift | Control | Alt | Super |
 
 `Z` / `/` are layer-taps to the **BUTTON** layer; `X` / `.` are
@@ -97,14 +97,14 @@ tap = letter, hold = **RAlt**.
 
 ### Thumb keys (BASE)
 
-| Slot           | Tap    | Hold (layer)  |
-|----------------|--------|---------------|
-| Left tertiary  | Esc    | MEDIA         |
-| Left primary   | Space  | NAV           |
-| Left secondary | Tab    | MOUSE         |
-| Right secondary| Enter  | SYM           |
-| Right primary  | Backsp.| NUM           |
-| Right tertiary | Del    | FUN           |
+| Slot            | Tap     | Hold (layer) |
+| --------------- | ------- | ------------ |
+| Left tertiary   | Esc     | MEDIA        |
+| Left primary    | Space   | NAV          |
+| Left secondary  | Tab     | MOUSE        |
+| Right secondary | Enter   | SYM          |
+| Right primary   | Backsp. | NUM          |
+| Right tertiary  | Del     | FUN          |
 
 See the [Miryoku reference manual](https://github.com/manna-harbour/miryoku/tree/master/docs/reference)
 for the full contents of every layer.
@@ -113,30 +113,47 @@ for the full contents of every layer.
 
 ## Physical key mapping on the Eyelash Sofle
 
-Miryoku assumes a minimal 30-alpha + 6-thumb layout. The Eyelash Sofle
-has 64 physical positions, so we route the extras (number row, outer
-pinkie columns, inner-middle column, encoder buttons) to either `&none`
-or a hardcoded action:
+Miryoku's canonical layout is 30 alphas + 6 thumbs (+ 4 optional
+"not-present" slots). The Eyelash Sofle has **64 physical keys** — a
+number row, a middle arrow-diamond cluster, outer pinky columns, and 4
+extra inner-bottom keys next to the thumb clusters. Rather than let
+those extras go to `&none`, we **hard-code useful always-on defaults**
+for them so every physical key does something on every layer:
 
 ```
-   Row 0 (number row):   XXX XXX XXX XXX XXX XXX  XXX  XXX XXX XXX XXX XXX XXX
-   Row 1 (top alphas):   XXX  Q   W   E   R   T   XXX   Y   U   I   O   P  XXX
-   Row 2 (home row):     XXX  A   S   D   F   G   XXX   H   J   K   L   '  XXX
-   Row 3 (bottom):       XXX  Z   X   C   V   B   XXX   N   M   ,   .   /  XXX
-   Row 4 (thumbs/enc):  MUTE XXX XXX Esc Spc Tab       P/P Ent Bsp Del XXX XXX
+Row 0 (number row, y ≈ 0.25):
+  Esc  1   2   3   4   5      UP         6   7   8   9   0   Bsp
+
+Row 1 (top alpha, y ≈ 1.25):
+  Tab  Q   W   E   R   T      DOWN       Y   U   I   O   P   \
+
+Row 2 (home row, y ≈ 2.25):
+  CW*  A/⌘ S/⌥ D/⌃ F/⇧ G      LEFT       H   J/⇧ K/⌃ L/⌥ '/⌘ ;
+
+Row 3 (bottom alpha, y ≈ 3.25):
+  ⇧    Z*  X/⌥ᴿ C   V   B      RIGHT      N   M   ,   ./⌥ᴿ /*  Enter
+
+Row 4 (thumbs + encoder + arrow-center):
+  Mute ⌃  ⌘  Esc Spc Tab      Enter      Ent Bsp Del ⇧   Del
+           |  MED NAV MOU     [ctr]      SYM NUM FUN
 ```
 
-- `MUTE` = left encoder press → `C_MUTE` on every layer.
-- `P/P`  = right encoder press → `C_PLAY_PAUSE` on every layer.
-- `XXX`  = `&none` — physical key does nothing; free for future
-  customisation (see [Potential improvements](#known-issues--potential-improvements)).
+- `CW*` = `&caps_word` (tap-to-shift-word).
+- Home-row mods (LGUI / LALT / LCTRL / LSHFT on the left; mirrored on
+  the right) fire on hold, letter fires on tap.
+- `Z*` and `/*` are layer-taps to the **BUTTON** layer.
+- `X/⌥ᴿ` and `./⌥ᴿ` are tap = letter, hold = **RAlt**.
+- The 6 thumb keys are layer-taps into the six Miryoku sub-layers.
+- The left encoder rotates for volume up/down on every layer.
+- The arrow diamond and number row are hard-coded and layer-transparent,
+  so they work in the middle of any Miryoku layer.
 
 Encoder rotation:
 
-| Encoder | CW / CCW              | Behaviour |
-|---------|-----------------------|-----------|
-| Left    | Volume Up / Down      | `rsr_vol` runtime-sensor-rotate, live-remappable via DYA Studio |
-| Right   | (no-op placeholder)   | `rsr_trans` — reserved for user config via DYA Studio |
+| Encoder | CW / CCW              | Behaviour                                                           |
+| ------- | --------------------- | ------------------------------------------------------------------- |
+| Left    | Volume Up / Down      | `rsr_vol` runtime-sensor-rotate, live-remappable via DYA Studio     |
+| Right   | (no hardware encoder) | The board only has one encoder — right-side rotation isn't wired up |
 
 The mapping macro is defined in
 [`config/miryoku/mapping/eyelash_sofle.h`](config/miryoku/mapping/eyelash_sofle.h).
@@ -158,11 +175,21 @@ The mapping macro is defined in
   - The build has no extra `west.yml` dependency to babysit.
   - Local edits and experiments are easy.
   - It also keeps working when Miryoku's upstream changes underneath us.
-- **Encoder press keys stay active on every layer.** The two encoder
-  buttons are on the Row 4 pinkies, physically far away from any
-  layer-relevant thumb key. Making them layer-transparent to Miryoku
-  would waste them; hardcoding them to media (mute / play-pause) keeps
-  them useful without stepping on any Miryoku key.
+- **Encoder press stays layer-transparent.** The single (left) encoder
+  button is far away from any Miryoku layer switch, so hard-coding it to
+  `C_MUTE` is nearly free ergonomically and keeps mute-on-every-layer
+  as an always-available shortcut.
+- **All 64 physical keys do something on every layer.** The Miryoku
+  canonical layout is only 36 keys, so an out-of-the-box port would
+  leave 28 physical keys inert. Instead, this mapping hard-codes the
+  number row (`1`–`0`), the arrow diamond (⬆⬇⬅➡ + Enter in the middle),
+  the outer pinky columns (`Tab` / `Caps Word` / `Shift` on the left,
+  `\` / `;` / `Enter` on the right), and the four extra inner-bottom
+  keys (`Ctrl` / `Gui` on the left, `Shift` / `Delete` on the right) so
+  they behave like a standard Sofle regardless of which Miryoku layer
+  is active. The trade-off is that these keys are **not**
+  layer-aware — the number row always types digits, even on the FUN
+  layer.
 - **Soft-off kludge instead of bootloader.** `MIRYOKU_KLUDGE_SOFT_OFF`
   routes Miryoku's "bootloader" corner key to `&soft_off`. Combined with
   the 2000 ms `hold-time-ms` we already configure, a single tap does
@@ -182,15 +209,15 @@ The mapping macro is defined in
 Every Miryoku option is a plain `#define` at the top of
 `config/eyelash_sofle.keymap`. Some of the more useful ones:
 
-| Define                                | Effect |
-|---------------------------------------|--------|
-| `MIRYOKU_ALPHAS_COLEMAKDH` (default when unset) | Colemak-DH alphas |
-| `MIRYOKU_ALPHAS_QWERTY` (current)     | QWERTY alphas |
-| `MIRYOKU_ALPHAS_DVORAK`               | Dvorak |
-| `MIRYOKU_LAYERS_FLIP`                 | Flip primary/secondary sides |
-| `MIRYOKU_NAV_INVERTEDT`               | Inverted-T arrow arrangement on Nav |
-| `MIRYOKU_NAV_VI`                      | HJKL vi-style arrows on Nav |
-| `MIRYOKU_CLIPBOARD_MAC` / `_WIN`      | Platform-specific clipboard bindings |
+| Define                                          | Effect                               |
+| ----------------------------------------------- | ------------------------------------ |
+| `MIRYOKU_ALPHAS_COLEMAKDH` (default when unset) | Colemak-DH alphas                    |
+| `MIRYOKU_ALPHAS_QWERTY` (current)               | QWERTY alphas                        |
+| `MIRYOKU_ALPHAS_DVORAK`                         | Dvorak                               |
+| `MIRYOKU_LAYERS_FLIP`                           | Flip primary/secondary sides         |
+| `MIRYOKU_NAV_INVERTEDT`                         | Inverted-T arrow arrangement on Nav  |
+| `MIRYOKU_NAV_VI`                                | HJKL vi-style arrows on Nav          |
+| `MIRYOKU_CLIPBOARD_MAC` / `_WIN`                | Platform-specific clipboard bindings |
 
 See the [Miryoku reference](https://github.com/manna-harbour/miryoku/tree/master/docs/reference)
 for the full list.
@@ -225,11 +252,11 @@ which was left untouched.
 Builds run in GitHub Actions via [zmkfirmware/zmk/.github/workflows/build-user-config.yml][build-workflow].
 `build.yaml` produces three artifacts:
 
-| Artifact                          | Board / shield                        | Notes |
-|-----------------------------------|---------------------------------------|-------|
-| `eyelash_sofle-miryoku-left`      | `nice_nano_v2` + `eyelash_sofle_left nice_view` | Includes ZMK Studio (`studio-rpc-usb-uart`, `CONFIG_ZMK_STUDIO=y`) |
-| `eyelash_sofle-miryoku-right`     | `nice_nano_v2` + `eyelash_sofle_right nice_view` | |
-| `eyelash_sofle-settings_reset`    | `nice_nano_v2` + `settings_reset`     | Flash to wipe persisted settings (BT pairings, etc.) |
+| Artifact                       | Board / shield                                   | Notes                                                              |
+| ------------------------------ | ------------------------------------------------ | ------------------------------------------------------------------ |
+| `eyelash_sofle-miryoku-left`   | `nice_nano_v2` + `eyelash_sofle_left nice_view`  | Includes ZMK Studio (`studio-rpc-usb-uart`, `CONFIG_ZMK_STUDIO=y`) |
+| `eyelash_sofle-miryoku-right`  | `nice_nano_v2` + `eyelash_sofle_right nice_view` |                                                                    |
+| `eyelash_sofle-settings_reset` | `nice_nano_v2` + `settings_reset`                | Flash to wipe persisted settings (BT pairings, etc.)               |
 
 [build-workflow]: https://github.com/zmkfirmware/zmk/blob/main/.github/workflows/build-user-config.yml
 
@@ -247,9 +274,25 @@ path is to push and grab the artifacts from the workflow run.
    - Right half → `eyelash_sofle-miryoku-right.uf2`
 3. The nice!nano will reboot into the new firmware automatically.
 
-For a full reset, flash `eyelash_sofle-settings_reset.uf2` to both halves
-first, then flash the real firmware. This clears Bluetooth pairings and
-any persisted settings.
+### Full reset (recommended after any keymap / config change)
+
+If the halves stop talking to each other, or one side stops responding
+after a flash, do a full re-pair:
+
+1. Flash **`eyelash_sofle-settings_reset.uf2`** to **both halves**
+   (double-tap reset, drag the file over, wait for it to reboot).
+2. Flash **`eyelash_sofle-miryoku-left.uf2`** to the left half.
+3. Flash **`eyelash_sofle-miryoku-right.uf2`** to the right half.
+4. Let the two halves discover each other (a few seconds, usually).
+
+This is the standard ZMK split re-pair procedure and clears Bluetooth
+pairings + any persisted settings.
+
+> **If only one half is responsive, or only the left-hand alphas type,
+> the split BLE pairing is almost certainly the culprit.** The right
+> half is a peripheral — it only forwards matrix events; the whole
+> keymap lives on the central (left). If it can't reach the central,
+> nothing on the right side will do anything, regardless of the keymap.
 
 ---
 
@@ -311,30 +354,26 @@ zmk-sofle/
 - **DT node names are uppercase (`BASE`, `NAV`, …).** These come straight
   from the Miryoku macro. dtc accepts them, but some editors / linters
   complain. Not a real problem, but noisy.
-- **`N30 / N31 / N38 / N39` positions are `&none`.** On the Eyelash Sofle
-  these are the four extra inner-lower keys next to the thumb clusters
-  (previously LCtrl/LGui/RShift/Delete on the vendor keymap). They are
-  intentionally left as `&none` because Miryoku expects the "not present"
-  positions to be inert; if you want them back, override them in the
-  mapping (they're already parameterised — just don't send them through
-  as `U_NP`).
-- **Right encoder rotation does nothing.** `rsr_trans` is defined but
-  has no bindings. Intentional — reserved for per-user assignment via
-  DYA Studio.
+- **The board only has a left encoder.** The right-side `sensor-bindings`
+  slot is filled with `&rsr_trans` (a no-op) because there is no right
+  encoder to bind. If a future hardware revision adds one, replace the
+  placeholder in `config/eyelash_sofle.keymap`.
+- **Hard-coded extras override Miryoku on their layers.** Row 0 always
+  types 1–0 (never F-keys), the arrow diamond always types arrows, etc.
+  That's a deliberate trade-off (see [Design decisions](#design-decisions))
+  — if you want layer-specific behaviour on the extras, override them
+  per-layer via a `keymap { LAYER { bindings = <…>; }; };` block.
 
 ### Potential improvements
 
-- **Restore the four "extra" bottom-row keys.** Simplest fix: edit
-  `config/miryoku/mapping/eyelash_sofle.h` and substitute concrete
-  behaviours for `N30 N31 N38 N39` instead of piping them through the
-  layer definitions. Good candidates:
-  - `LCtrl` / `LGui` / `RShift` / (something) to mirror the stock layout.
-  - Media transport (`prev / play / next / stop`).
-  - Additional layer toggles.
 - **Layer-aware encoder bindings.** The framework supports adding a
   `sensor-bindings` per layer. E.g. NAV could bind rotate → PgUp/PgDn,
   NUM → +/-, MEDIA → hue rotate. Currently every layer just gets
-  `rsr_vol`.
+  `rsr_vol` (volume).
+- **Layer-aware extras.** The hard-coded number row / arrow diamond /
+  outer pinkies are the same on every layer. Overriding e.g. the number
+  row to become F1–F10 on the FUN layer would recover Miryoku's original
+  layered semantics.
 - **Retune keymap-drawer for Miryoku.** Add `&u_mt`, `&u_lt`, and
   `&u_to_U_*` entries to `raw_binding_map` and regenerate the SVG so it
   can be embedded here.
